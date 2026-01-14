@@ -85,9 +85,14 @@ struct BasicCoreDataTests {
             likedByUser: false
         )
         
-        manager.savePosts([post])
+        let feed = FeedResponse(feed: [post])
+
+        var fetchedPosts = manager.fetchPosts()
+        #expect(fetchedPosts.count == 0)
+        manager.savePosts(feed.feed)
+        usleep(10 * 1000)
         
-        let fetchedPosts = manager.fetchPosts()
+        fetchedPosts = manager.fetchPosts()
         let post0 = fetchedPosts[0]
         
         #expect(fetchedPosts.count == 1)
@@ -95,6 +100,7 @@ struct BasicCoreDataTests {
         #expect(post0.likeCount == 10)
         
         manager.clearAllPosts()
+        usleep(10 * 1000)
     }
     
     @Test("Can update a post's like count")
@@ -102,6 +108,7 @@ struct BasicCoreDataTests {
         let manager = CoreDataManager.shared
         
         manager.clearAllPosts()
+        usleep(10 * 1000)
         
         let post = Post(
             id: "test_001",
@@ -111,20 +118,26 @@ struct BasicCoreDataTests {
             likeCount: 10,
             likedByUser: false
         )
+        
         manager.savePosts([post])
+        usleep(10 * 1000)
         
         var updatedPost = post
         updatedPost.likeCount = 20
         updatedPost.likedByUser = true
         manager.updatePost(updatedPost)
+        usleep(10 * 1000)
         
         let fetchedPosts = manager.fetchPosts()
+        usleep(10 * 1000)
+        
         let post0 = fetchedPosts[0]
         
         #expect(post0.likeCount == 20)
         #expect(post0.likedByUser == true)
         
         manager.clearAllPosts()
+        usleep(10 * 1000)
     }
     
     @Test("Clearing posts removes all data")
@@ -132,16 +145,21 @@ struct BasicCoreDataTests {
         let manager = CoreDataManager.shared
         
         manager.clearAllPosts()
+        usleep(10 * 1000)
         
         let posts = [
             Post(id: "1", userName: "User 1", userImage: "url", postImage: "url", likeCount: 10, likedByUser: false),
             Post(id: "2", userName: "User 2", userImage: "url", postImage: "url", likeCount: 20, likedByUser: false)
         ]
         manager.savePosts(posts)
+        usleep(10 * 1000)
         
         manager.clearAllPosts()
+        usleep(10 * 1000)
         
         let fetchedPosts = manager.fetchPosts()
+        usleep(10 * 1000)
+        
         #expect(fetchedPosts.isEmpty)
     }
 }

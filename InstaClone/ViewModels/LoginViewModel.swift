@@ -60,6 +60,9 @@ class LoginViewModel: ObservableObject {
 
         } else {
             // Show error message on failure
+            UserDefaults.standard.set(false, forKey: "isLoggedIn")
+            
+            isLoggedIn = false
             errorMessage = "Invalid Credentials"
         }
     }

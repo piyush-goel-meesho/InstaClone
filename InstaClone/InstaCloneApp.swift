@@ -13,10 +13,10 @@ struct InstaCloneApp: App {
     let persistenceController = PersistenceController.shared
     
     init() {
-        URLCache.shared = URLCache(
-            memoryCapacity: 50 * 1024 * 1024,   // 50 MB
-            diskCapacity: 500 * 1024 * 1024     // 500 MB
-        )
+//        URLCache.shared = URLCache(
+//            memoryCapacity: 50 * 1024 * 1024,   // 50 MB
+//            diskCapacity: 500 * 1024 * 1024     // 500 MB
+//        )
     }
 
     var body: some Scene {
