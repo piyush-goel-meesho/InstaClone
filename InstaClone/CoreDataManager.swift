@@ -20,10 +20,9 @@ import CoreData
 
 class CoreDataManager {
 
-    // Shared singleton instance
     static let shared = CoreDataManager()
 
-    // Reference to PersistenceController (Core Data stack)
+    // Reference to PersistenceController
     private let persistenceController = PersistenceController.shared
 
     // Main view context used for all Core Data operations

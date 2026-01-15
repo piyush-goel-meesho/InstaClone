@@ -17,11 +17,8 @@ struct ReelsView: View {
 
     // Used to dismiss this view (navigation back)
     @Environment(\.dismiss) var dismiss
-
-    // Shared login state (used for logout)
+    
     @ObservedObject var viewModel: LoginViewModel
-
-    // ViewModel responsible for fetching reels & handling likes
     @StateObject private var reelsViewModel = ReelsViewModel()
 
     // Currently visible reel index

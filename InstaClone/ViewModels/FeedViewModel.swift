@@ -22,8 +22,6 @@ struct Post: Identifiable, Codable {
     var likeCount: Int
     var likedByUser: Bool
     
-    // enum defined to convert the recieved data
-    // comfortably into the struct form
     enum CodingKeys: String, CodingKey {
         case id = "post_id"
         case userName = "user_name"
@@ -34,8 +32,7 @@ struct Post: Identifiable, Codable {
     }
 }
 
-// Array of Posts that is recieved from the
-// FetchReel URL is stored in this struct
+// Array of Posts is stored in this struct
 struct FeedResponse: Codable {
     let feed: [Post]
 }
@@ -57,7 +54,6 @@ enum NetworkError: Error {
 }
 
 // Main class implemented to manage all the important functionalities
-//  of the feed view of the App
 class FeedViewModel: ObservableObject {
     @Published var isLoading: Bool = true           // True if the data is still fetching
     @Published var posts: [Post] = []               // Hold all the recieved feed data
@@ -87,14 +83,32 @@ class FeedViewModel: ObservableObject {
             }
             
         } catch {
-            let cachedPosts = coreDataManager.fetchPosts()
-            
-            await MainActor.run {
-                if !cachedPosts.isEmpty {
-                    posts = cachedPosts
-                    showToastMessage("No network. Showing cached data.")
-                } else {
-                    errorMessage = "Failed to load feed: \(error.localizedDescription)"
+            do {
+                // Load from local file
+                // let fileURL = URL(fileURLWithPath: "./data.json")
+
+                guard let fileURL = Bundle.main.url(forResource: "data", withExtension: "json") else {
+                    throw NSError(domain: "FileNotFound", code: 404)
+                }
+                
+                let data = try Data(contentsOf: fileURL)
+                let feedResponse = try JSONDecoder().decode(FeedResponse.self, from: data)
+                
+                coreDataManager.savePosts(feedResponse.feed)
+                
+                await MainActor.run {
+                    posts = feedResponse.feed
+                }
+            } catch {
+                let cachedPosts = coreDataManager.fetchPosts()
+                
+                await MainActor.run {
+                    if !cachedPosts.isEmpty {
+                        posts = cachedPosts
+                        showToastMessage("No network. Showing cached data.")
+                    } else {
+                        errorMessage = "Failed to load feed: \(error.localizedDescription)"
+                    }
                 }
             }
         }

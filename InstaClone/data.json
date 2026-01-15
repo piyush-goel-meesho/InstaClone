@@ -1,0 +1,164 @@
+{
+    "feed": [
+        {
+            "post_id": "post_001",
+            "user_name": "john_do",
+            "user_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1587065088/men1_mzv717.jpg",
+            "post_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1722369196/two_thali_sd9gzh.jpg",
+            "like_count": 120,
+            "liked_by_user": false
+        },
+        {
+            "post_id": "post_002",
+            "user_name": "jane_smith",
+            "user_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1580404279/SheathDress_jviktv.jpg",
+            "post_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1580404279/SheathDress_jviktv.jpg",
+            "like_count": 85,
+            "liked_by_user": true
+        },
+        {
+            "post_id": "post_003",
+            "user_name": "alex_jones",
+            "user_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1568204773/jacket_zejmoe.jpg",
+            "post_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1568204773/jacket_zejmoe.jpg",
+            "like_count": 200,
+            "liked_by_user": false
+        },
+        {
+            "post_id": "post_004",
+            "user_name": "emma_brown",
+            "user_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1580404649/WomensCoat_ognj8g.jpg",
+            "post_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1580404649/WomensCoat_ognj8g.jpg",
+            "like_count": 95,
+            "liked_by_user": true
+        },
+        {
+            "post_id": "post_005",
+            "user_name": "michael_clark",
+            "user_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1580404649/WomensCoat_ognj8g.jpg",
+            "post_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1580404649/WomensCoat_ognj8g.jpg",
+            "like_count": 140,
+            "liked_by_user": false
+        },
+        {
+            "post_id": "post_006",
+            "user_name": "olivia_davis",
+            "user_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1587065088/men1_mzv717.jpg",
+            "post_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1568197975/samples/people/bicycle.jpg",
+            "like_count": 180,
+            "liked_by_user": true
+        },
+        {
+            "post_id": "post_007",
+            "user_name": "william_moore",
+            "user_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1580404649/WomensCoat_ognj8g.jpg",
+            "post_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1580404649/WomensCoat_ognj8g.jpg",
+            "like_count": 75,
+            "liked_by_user": false
+        },
+        {
+            "post_id": "post_008",
+            "user_name": "sophia_taylor",
+            "user_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1587065088/men1_mzv717.jpg",
+            "post_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1568197975/samples/people/bicycle.jpg",
+            "like_count": 110,
+            "liked_by_user": false
+        },
+        {
+            "post_id": "post_009",
+            "user_name": "james_anderson",
+             "user_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1587065088/men1_mzv717.jpg",
+            "post_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1568197975/samples/people/bicycle.jpg",
+            "like_count": 135,
+            "liked_by_user": true
+        },
+        {
+            "post_id": "post_010",
+            "user_name": "ava_martin",
+            "user_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1587065088/men1_mzv717.jpg",
+            "post_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1568197975/samples/people/bicycle.jpg",
+            "like_count": 90,
+            "liked_by_user": false
+        },
+        {
+            "post_id": "post_011",
+            "user_name": "logan_lee",
+            "user_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1587065088/men1_mzv717.jpg",
+            "post_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1568197975/samples/people/bicycle.jpg",
+            "like_count": 170,
+            "liked_by_user": true
+        },
+        {
+            "post_id": "post_012",
+            "user_name": "mia_white",
+            "user_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1587065088/men1_mzv717.jpg",
+            "post_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1722369196/two_thali_sd9gzh.jpg",
+            "like_count": 150,
+            "liked_by_user": false
+        },
+        {
+            "post_id": "post_013",
+            "user_name": "lucas_harris",
+             "user_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1587065088/men1_mzv717.jpg",
+            "post_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1568197975/samples/people/bicycle.jpg",
+            "like_count": 125,
+            "liked_by_user": true
+        },
+        {
+            "post_id": "post_014",
+            "user_name": "ella_thomas",
+            "user_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1587065088/men1_mzv717.jpg",
+            "post_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1722369196/two_thali_sd9gzh.jpg",
+            "like_count": 100,
+            "liked_by_user": false
+        },
+        {
+            "post_id": "post_015",
+            "user_name": "jackson_walker",
+            "user_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1587065088/men1_mzv717.jpg",
+            "post_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1568197972/samples/bike.jpg",
+            "like_count": 130,
+            "liked_by_user": true
+        },
+        {
+            "post_id": "post_016",
+            "user_name": "scarlett_hill",
+            "user_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1587065088/men1_mzv717.jpg",
+            "post_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1587065118/men3_rihywa.jpg",
+            "like_count": 145,
+            "liked_by_user": false
+        },
+        {
+            "post_id": "post_017",
+            "user_name": "mason_green",
+            "user_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1587065088/men1_mzv717.jpg",
+            "post_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1580405368/KidsWear_xrdha1.jpg",
+            "like_count": 155,
+            "liked_by_user": true
+        },
+        {
+            "post_id": "post_018",
+            "user_name": "zoe_adams",
+            "user_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1587065088/men1_mzv717.jpg",
+            "post_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1587065118/men3_rihywa.jpg",
+            "like_count": 85,
+            "liked_by_user": false
+        },
+        {
+            "post_id": "post_019",
+            "user_name": "ethan_baker",
+            "user_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1587065088/men1_mzv717.jpg",
+            "post_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1580405368/KidsWear_xrdha1.jpg",
+            "like_count": 115,
+            "liked_by_user": true
+        },
+        {
+            "post_id": "post_020",
+            "user_name": "grace_evans",
+            "user_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1587065088/men1_mzv717.jpg",
+            "post_image": "https://res.cloudinary.com/drbeg6afu/image/upload/v1587065118/men3_rihywa.jpg",
+            "like_count": 160,
+            "liked_by_user": false
+        }
+    ]
+}

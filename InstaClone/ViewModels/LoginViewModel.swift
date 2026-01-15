@@ -18,19 +18,14 @@ class LoginViewModel: ObservableObject {
     // User input fields
     @Published var email: String = ""
     @Published var password: String = ""
-
-    // Authentication state
+    
     @Published var isLoggedIn = false
-
-    // Error message shown on invalid login
     @Published var errorMessage: String? = nil
 
-    // Initialize ViewModel and restore login state if present
     init() {
         checkLoginState()
     }
 
-    // Checks persisted login status from UserDefaults
     func checkLoginState() {
         isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
     }
@@ -40,14 +35,11 @@ class LoginViewModel: ObservableObject {
         !email.isEmpty && !password.isEmpty
     }
 
-    // Hardcoded credentials (used for demo / prototype purposes)
     private var validEmail = "user@example.com"
     private var validPassword = "password123"
 
-    // Attempts login by validating credentials
     func login() {
 
-        // Check entered credentials against valid ones
         if email == validEmail && password == validPassword {
 
             // Persist login state
@@ -67,7 +59,6 @@ class LoginViewModel: ObservableObject {
         }
     }
 
-    // Logs out the user and clears persisted data
     func logout() {
 
         // Reset local state

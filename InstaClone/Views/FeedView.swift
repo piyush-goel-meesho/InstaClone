@@ -14,16 +14,12 @@ internal import Combine
 
 struct FeedView: View {
 
-    // Used to dismiss this view on logout
     @Environment(\.dismiss) var dismiss
 
     // Shared LoginViewModel from LoginView
     @ObservedObject var viewModel: LoginViewModel
 
-    // ViewModel for reels navigation
-    @StateObject var reelsViewModel = ReelsViewModel()
-
-    // ViewModel for feed data
+//    @StateObject var reelsViewModel = ReelsViewModel()
     @StateObject private var feedViewModel = FeedViewModel()
 
     // Controls navigation to Reels screen
