@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 // ============================================================================
 // CoreDataManager
@@ -33,6 +34,54 @@ class CoreDataManager {
     // Private initializer to enforce singleton usage
     private init() {}
 
+    // Image Operations
+
+    func saveImages(_ imageURL: String) {
+        guard let url = URL(string: imageURL) else {return}
+        
+        Task {
+            do {
+                let (data, response) = try await URLSession.shared.data(from: url)
+
+                guard let httpResponse = response as? HTTPURLResponse,
+                    (200...299).contains(httpResponse.statusCode) else {
+                    return
+                }
+
+                Task {
+                    await context.perform {
+                        let imageEntity = ImageEntity(context: self.context)
+                        imageEntity.image = data
+                        imageEntity.url = imageURL
+                        self.saveContext()
+                    }
+                }
+                
+                print("Image saved in cache : \(type(of: UIImage(data: data)!))")
+            } catch {
+                print("Error saving image")
+            }
+        }
+    }
+
+    func fetchImage(_ imageURL: String) -> UIImage? {
+        let request: NSFetchRequest<ImageEntity> = ImageEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "url == %@", imageURL)
+        do {
+            let imageEntities = try context.fetch(request)
+            if let validImage = imageEntities.first?.uiImage {
+                print("Valid image found : \(type(of: validImage))")
+                return validImage
+            } else {
+                print("No valid image found")
+                return UIImage()
+            }
+        } catch {
+            print("Error fetching image")
+            return nil
+        }
+    }
+
     // =========================================================================
     // Posts Operations
     // =========================================================================
@@ -55,6 +104,11 @@ class CoreDataManager {
             }
 
             self.saveContext()
+        }
+        
+        for post in posts {
+            saveImages(post.postImage)
+            saveImages(post.userImage)
         }
     }
 

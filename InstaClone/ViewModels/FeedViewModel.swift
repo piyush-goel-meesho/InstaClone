@@ -83,23 +83,28 @@ class FeedViewModel: ObservableObject {
             }
             
         } catch {
-            do {
-                // Load from local file
-                // let fileURL = URL(fileURLWithPath: "./data.json")
-
-                guard let fileURL = Bundle.main.url(forResource: "data", withExtension: "json") else {
-                    throw NSError(domain: "FileNotFound", code: 404)
-                }
-                
-                let data = try Data(contentsOf: fileURL)
-                let feedResponse = try JSONDecoder().decode(FeedResponse.self, from: data)
-                
-                coreDataManager.savePosts(feedResponse.feed)
-                
-                await MainActor.run {
-                    posts = feedResponse.feed
-                }
-            } catch {
+//            do {
+//                // Load from local file
+//                // let fileURL = URL(fileURLWithPath: "./data.json")
+//
+//                guard let fileURL = Bundle.main.url(forResource: "data", withExtension: "json") else {
+//                    throw NSError(domain: "FileNotFound", code: 404)
+//                }
+//                
+//                let data = try Data(contentsOf: fileURL)
+//                let feedResponse = try JSONDecoder().decode(FeedResponse.self, from: data)
+//                
+//                coreDataManager.savePosts(feedResponse.feed)
+//                
+//                for post in feedResponse.feed {
+//                    coreDataManager.saveImages(post.postImage)
+//                    coreDataManager.saveImages(post.userImage)
+//                }
+//                
+//                await MainActor.run {
+//                    posts = feedResponse.feed
+//                }
+//            } catch {
                 let cachedPosts = coreDataManager.fetchPosts()
                 
                 await MainActor.run {
@@ -110,7 +115,7 @@ class FeedViewModel: ObservableObject {
                         errorMessage = "Failed to load feed: \(error.localizedDescription)"
                     }
                 }
-            }
+//            }
         }
         
         await MainActor.run {

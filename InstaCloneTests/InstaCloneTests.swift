@@ -8,6 +8,24 @@
 import Testing
 @testable import InstaClone
 import Foundation
+internal import UIKit
+
+func areImagesEqual(_ image1: UIImage?, _ image2: UIImage?) -> Bool {
+    // Ensure both images are not nil
+    guard let image1 = image1, let image2 = image2 else {
+        return image1 == nil && image2 == nil
+    }
+
+    // Convert images to Data representation
+    // Using pngData() ensures consistent data for the same image content,
+    // regardless of original compression, though it can be an expensive operation.
+    guard let data1 = image1.pngData(), let data2 = image2.pngData() else {
+        return false // If conversion fails, they can't be compared this way
+    }
+
+    // Compare the Data objects
+    return data1 == data2
+}
 
 //struct InstaCloneTests {
 //
@@ -43,6 +61,34 @@ struct BasicLoginTests {
         #expect(viewModel.isLoggedIn == false)
         #expect(viewModel.errorMessage == "Invalid Credentials")
     }
+    
+    @Test("Save image in cache")
+    func saveImageInCache() async {
+        
+        let manager = CoreDataManager.shared
+        let testURL = "https://res.cloudinary.com/drbeg6afu/image/upload/v1722369196/two_thali_sd9gzh.jpg"
+
+        manager.saveImages(testURL)
+        usleep(500 * 1000)
+        
+        let cachedImage = manager.fetchImage(testURL)
+        #expect(cachedImage != nil)
+
+        guard let url = URL(string: testURL) else {
+            #expect(false , "Invalid URL")
+            return
+        }
+        
+        do {
+            let (remoteData, _) = try await URLSession.shared.data(from: url)
+            
+            print("data recieved in test: \(type(of: UIImage(data: remoteData)!))")
+            #expect(areImagesEqual(cachedImage!, UIImage(data: remoteData)!))
+        } catch {
+            #expect(false, "Failed to fetch image from URL")
+        }
+    }
+
     
     @Test("Empty email and password is invalid")
     func emptyFieldsAreInvalid() {
@@ -97,6 +143,7 @@ struct BasicCoreDataTests {
         
         #expect(fetchedPosts.count == 1)
         #expect(post0.id == "test_001")
+        #expect(post0.userName == "Test User")
         #expect(post0.likeCount == 10)
         
         manager.clearAllPosts()

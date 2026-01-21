@@ -207,6 +207,8 @@ struct PostView: View {
 
     let post: Post
     let onLike: () -> Void
+    
+    let coreDataManager = CoreDataManager.shared
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -217,16 +219,24 @@ struct PostView: View {
             HStack(spacing: 10) {
                 
                 // User profile image
-                AsyncImage(url: URL(string: post.userImage)) { image in
-                    image
+                if let cachedImage = coreDataManager.fetchImage(post.userImage) {
+                    Image(uiImage: cachedImage)
                         .resizable()
                         .scaledToFill()
-                } placeholder: {
-                    Circle()
-                        .fill(Color.gray)
+                        .frame(width: 32, height: 32)
+                        .clipShape(Circle())
+                } else {
+                    AsyncImage(url: URL(string: post.userImage)) { image in
+                        image
+                            .resizable()
+                            .scaledToFill()
+                    } placeholder: {
+                        Circle()
+                            .fill(Color.gray)
+                    }
+                    .frame(width: 32, height: 32)
+                    .clipShape(Circle())
                 }
-                .frame(width: 32, height: 32)
-                .clipShape(Circle())
 
                 // User name who owns the post
                 Text(post.userName)
@@ -241,33 +251,33 @@ struct PostView: View {
             // ------------------------------------------------------------
             // Post Image
             // ------------------------------------------------------------
-            AsyncImage(url: URL(string: post.postImage)) { phase in
-                switch phase {
-                // While the image is loading
-                case .empty:
-                    Rectangle()
-                        .fill(Color.gray.opacity(0.3))
-                        .frame(height: 400)
-                        .overlay(ProgressView())
-                    
-                // After the image has loaded successfully
-                case .success(let image):
-                    image
-                        .resizable()
-                        .scaledToFit()
-
-                // On Failure display a placeholder
-                case .failure:
-                    Rectangle()
-                        .fill(Color.gray.opacity(0.3))
-                        .frame(height: 400)
-                        .overlay(
-                            Image(systemName: "photo")
-                                .foregroundColor(.gray)
-                        )
-
-                @unknown default:
-                    EmptyView()
+            if let cachedImage = coreDataManager.fetchImage(post.postImage) {
+                Image(uiImage: cachedImage)
+                    .resizable()
+                    .scaledToFit()
+            } else {
+                AsyncImage(url: URL(string: post.postImage)) { phase in
+                    switch phase {
+                        // While the image is loading
+                    case .empty:
+                        Rectangle()
+                            .fill(Color.gray.opacity(0.3))
+                            .frame(height: 400)
+                            .overlay(ProgressView())
+                        
+                        // After the image has loaded successfully
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .scaledToFit()
+                        
+                        // On Failure display a placeholder or cached image
+                    case .failure:
+                        EmptyView()
+                        
+                    @unknown default:
+                        EmptyView()
+                    }
                 }
             }
 

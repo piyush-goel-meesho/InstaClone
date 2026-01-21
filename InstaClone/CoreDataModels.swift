@@ -9,6 +9,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 extension PostEntity {
     func toPost() -> Post {
@@ -51,5 +52,22 @@ extension ReelEntity {
         self.reelVideo = reel.reelVideo
         self.likeCount = Int32(reel.likeCount)
         self.likedByUser = reel.likedByUser
+    }
+}
+
+extension ImageEntity {
+    // Convert Data? to UIImage?
+    var uiImage: UIImage? {
+        guard let imageData = image as? Data else {
+//            print("Saved nil")
+            return nil
+        }
+//        print("Saved image")
+        return UIImage(data: imageData)
+    }
+    
+    // Set UIImage as Data
+    func setImage(_ uiImage: UIImage?) {
+        self.image = uiImage?.jpegData(compressionQuality: 0.8)
     }
 }
